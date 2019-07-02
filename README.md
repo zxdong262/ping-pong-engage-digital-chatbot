@@ -1,7 +1,7 @@
 
 # ping-pong-engage-digital-chatbot
 
-Simple example engage digital chatbot that will repond with 'pong' to message 'ping'
+Simple example engage digital chatbot that will repond with 'pong' to message 'ping', created with [RingCentral engage Digital chatbot framwork](https://github.com/ringcentral/engage-digital-chatbot-js).
 
 ## Youtube video
 
