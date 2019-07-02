@@ -1,0 +1,40 @@
+{
+  "name": "ping-pong-engage-digital-chatbot",
+  "version": "0.0.1",
+  "description": "Simple example engage digital chatbot that will repond with 'pong' to message 'ping'",
+  "keywords": [
+    "RingCentral",
+    "Chatbot",
+    "AI"
+  ],
+  "scripts": {
+    "ngrok": "ngrok http -region ap 4100",
+    "start": "node ./node_modules/.bin/ringcentral-engage-chatbot src/server/index.js",
+    "compile": "babel src/server --out-dir dist/server",
+    "build": "npm run clean && npm run compile",
+    "clean": "node build/clean.js",
+    "build-lambda": "node cmds/build",
+    "deploy-lambda": "node cmds/deploy",
+    "deploy": "npm run build-lambda && npm run deploy-lambda",
+    "watch": "cd deploy && ../node_modules/.bin/sls logs -f app -t",
+    "lint": "./node_modules/.bin/standard"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.2.0",
+    "ngrok": "^3.1.0",
+    "shelljs": "^0.8.3",
+    "standard": "^12.0.1",
+    "serverless": "^1.35.1",
+    "yarn-upgrade-all": "^0.5.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "ringcentral-engage-chatbot": "^0.3.3",
+    "serverless-http": "^2.0.2"
+  }
+}
