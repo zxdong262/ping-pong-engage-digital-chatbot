@@ -16,7 +16,17 @@ function isPing (event) {
   let $ = cheerio.load(_.get(event, 'resource.metadata.body'))
   let txt = $('body').text().trim()
   console.log('txt:', txt)
-  return txt === 'ping'
+  return txt.includes('ping')
+}
+
+function isTwitterMention (event) {
+  let type = _.get(event, 'resource.type')
+  if (type !== 'twtr/tweet') {
+    return false
+  }
+  let $ = cheerio.load(_.get(event, 'resource.metadata.body'))
+  let txt = $('body').text().trim()
+  return /@[\d\w]+/.test(txt)
 }
 
 exports.onEvent = async ({
@@ -29,9 +39,13 @@ exports.onEvent = async ({
   }
   console.log(event)
   if (isPing(event)) {
-    await client.reply(event, {
-      body: 'this is a auto reply body'
-    })
+    let res = {
+      body: 'pong'
+    }
+    if (isTwitterMention(event)) {
+      res.private = 1
+    }
+    await client.reply(event, res)
     return true
   }
 }
