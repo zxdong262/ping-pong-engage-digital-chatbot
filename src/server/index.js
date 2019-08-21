@@ -29,6 +29,10 @@ function isTwitterMention (event) {
   return /@[\d\w]+/.test(txt)
 }
 
+function isSelf (event) {
+  return _.get(event, 'resource.metadata.status') === 'user_initiated'
+}
+
 exports.onEvent = async ({
   event,
   client,
@@ -38,7 +42,7 @@ exports.onEvent = async ({
     return
   }
   console.log(event)
-  if (isPing(event)) {
+  if (!isSelf(event) && isPing(event)) {
     let res = {
       body: 'pong'
     }
