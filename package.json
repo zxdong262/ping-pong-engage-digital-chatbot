@@ -1,6 +1,6 @@
 {
   "name": "ping-pong-engage-digital-chatbot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple example engage digital chatbot that will repond with 'pong' to message 'ping'",
   "keywords": [
     "RingCentral",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "ringcentral-engage-chatbot": "^0.3.3",
+    "ringcentral-engage-chatbot": "^1.1.0",
     "serverless-http": "^2.0.2"
   }
 }

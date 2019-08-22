@@ -19,16 +19,6 @@ function isPing (event) {
   return txt.includes('ping')
 }
 
-function isTwitterMention (event) {
-  let type = _.get(event, 'resource.type')
-  if (type !== 'twtr/tweet') {
-    return false
-  }
-  let $ = cheerio.load(_.get(event, 'resource.metadata.body'))
-  let txt = $('body').text().trim()
-  return /@[\d\w]+/.test(txt)
-}
-
 function isSelf (event) {
   return _.get(event, 'resource.metadata.status') === 'user_initiated'
 }
@@ -45,9 +35,6 @@ exports.onEvent = async ({
   if (!isSelf(event) && isPing(event)) {
     let res = {
       body: 'pong'
-    }
-    if (isTwitterMention(event)) {
-      res.private = 1
     }
     await client.reply(event, res)
     return true
